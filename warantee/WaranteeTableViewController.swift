@@ -36,7 +36,6 @@ class WaranteeTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     func warantyRequest(token:String?, error: Error?) {
-        print(token)
         if let url = URL(string: "https://www.vrpacman.com/waranty") {
             var request = URLRequest(url: url)
             request.setValue(token, forHTTPHeaderField:"AuthToken")
@@ -44,16 +43,14 @@ class WaranteeTableViewController: UITableViewController {
             URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                   do {
-                    let output = String(data: data,encoding:String.Encoding.utf8) as String?
+                    _ = String(data: data,encoding:String.Encoding.utf8) as String?
                      let res = try JSONDecoder().decode([Warantee].self, from: data)
-                    for w in res{
+                    for i in stride(from: 0, to: res.count, by:1){
+                        let w = res[i]
                         print(w.sellerEmail)
                         self.WaranteeList.append(Warantee(id: w.id, uid: w.uid, date: w.date, amount: w.amount, category: w.category, warantyPeriod: w.warantyPeriod, sellerName: w.sellerName, sellerPhone: w.sellerPhone, sellerEmail: w.sellerEmail, location: w.location, createdAt: w.createdAt, updatedAt: w.updatedAt))
+                        self.warantyImageRequest(token:token, error: error, waranty: w, count: i, totalCount: res.count)
                     }
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                    print("\(data)")
                   } catch let error {
                      print(error)
                   }
@@ -61,24 +58,30 @@ class WaranteeTableViewController: UITableViewController {
            }.resume()
         }
     }
-//    func warantyImageRequest(token:String?, error: Error?) {
-//        print(token)
-//        if let url = URL(string: "https://www.vrpacman.com/waranty") {
-//            var request = URLRequest(url: url)
-//            request.setValue(token, forHTTPHeaderField:"AuthToken")
-//            request.httpMethod = "GET"
-//            URLSession.shared.downloadTask(with: request) { localURL, response, error in
-//            if let data = data {
-//                  do {
-//
-//                    print("\(data)")
-//                  } catch let error {
-//                     print(error)
-//                  }
-//               }
-//           }.resume()
-//        }
-//    }
+    func warantyImageRequest(token:String?, error: Error?, waranty:Warantee, count: Int, totalCount: Int) {
+        let documentsUrl:URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let destinationFileUrl = documentsUrl.appendingPathComponent(String(waranty.id) + ".jpg")
+        if let url = URL(string: "https://www.vrpacman.com/s3proxy?fileKey=" + waranty.uid + String(waranty.id) + ".jpg") {
+            var request = URLRequest(url: url)
+            request.setValue(token, forHTTPHeaderField:"AuthToken")
+            request.httpMethod = "GET"
+            URLSession.shared.downloadTask(with: request) { localURL, response, error in
+            if let localURL = localURL {
+                  do {
+                    try? FileManager.default.removeItem(at: destinationFileUrl)
+                    try FileManager.default.moveItem(at: localURL, to: destinationFileUrl)
+                    if(count == totalCount - 1) {
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    }
+                  } catch let error {
+                     print(error)
+                  }
+               }
+           }.resume()
+        }
+    }
 
     // MARK: - Table view data source
 
@@ -100,6 +103,14 @@ class WaranteeTableViewController: UITableViewController {
         cell.sellerNameLabel.text = warantee.sellerName
         cell.amountLabel.text = String(warantee.amount)
         cell.periodLabel.text = String(warantee.warantyPeriod)
+        let documentsUrl:URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsUrl.appendingPathComponent(String(warantee.id) + ".jpg")
+        do{
+            let imageData = try Data(contentsOf: fileURL)
+            cell.waranteeImage.image = UIImage(data: imageData)
+        } catch {
+            print("Error loading image: \(error)")
+        }
         return cell
     }
 
