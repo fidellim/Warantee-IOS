@@ -19,6 +19,7 @@
 		C6AD494B23A39ACA00B489FB /* WaranteeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AD494A23A39ACA00B489FB /* WaranteeTableViewController.swift */; };
 		C6AD494D23A39B9800B489FB /* Warantee.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AD494C23A39B9800B489FB /* Warantee.swift */; };
 		C6AD494F23A3B2FB00B489FB /* WaranteeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AD494E23A3B2FB00B489FB /* WaranteeCell.swift */; };
+		C6AE193A23A4DA5700A82D65 /* WarantyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AE193923A4DA5700A82D65 /* WarantyInfoViewController.swift */; };
 		FA205933239BD05D0064686F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA205932239BD05D0064686F /* LoginController.swift */; };
 		FA205935239BD4720064686F /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA205934239BD4720064686F /* SignupController.swift */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		C6AD494A23A39ACA00B489FB /* WaranteeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaranteeTableViewController.swift; sourceTree = "<group>"; };
 		C6AD494C23A39B9800B489FB /* Warantee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warantee.swift; sourceTree = "<group>"; };
 		C6AD494E23A3B2FB00B489FB /* WaranteeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaranteeCell.swift; sourceTree = "<group>"; };
+		C6AE193923A4DA5700A82D65 /* WarantyInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarantyInfoViewController.swift; sourceTree = "<group>"; };
 		FA205932239BD05D0064686F /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		FA205934239BD4720064686F /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +95,7 @@
 				FA205934239BD4720064686F /* SignupController.swift */,
 				FA205932239BD05D0064686F /* LoginController.swift */,
 				3FEBEF6B239BA19600A5A7E4 /* Main.storyboard */,
+				C6AE193923A4DA5700A82D65 /* WarantyInfoViewController.swift */,
 				C6AD494A23A39ACA00B489FB /* WaranteeTableViewController.swift */,
 				C6AD494E23A3B2FB00B489FB /* WaranteeCell.swift */,
 				C6AD494C23A39B9800B489FB /* Warantee.swift */,
@@ -253,6 +256,7 @@
 				3FEBEF66239BA19600A5A7E4 /* AppDelegate.swift in Sources */,
 				FA205935239BD4720064686F /* SignupController.swift in Sources */,
 				3FEBEF68239BA19600A5A7E4 /* SceneDelegate.swift in Sources */,
+				C6AE193A23A4DA5700A82D65 /* WarantyInfoViewController.swift in Sources */,
 				FA205933239BD05D0064686F /* LoginController.swift in Sources */,
 				C6AD494B23A39ACA00B489FB /* WaranteeTableViewController.swift in Sources */,
 			);

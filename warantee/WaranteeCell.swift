@@ -2,7 +2,7 @@
 //  WaranteeCell.swift
 //  warantee
 //
-//  Created by Amad Khan on 13/12/2019.
+//  Created by Humaid Khan on 13/12/2019.
 //  Copyright © 2019 student. All rights reserved.
 //
 
@@ -20,6 +20,8 @@ class WaranteeCell: UITableViewCell {
     
     @IBOutlet weak var waranteeImage: UIImageView!
     
+    @IBOutlet weak var iconLabel: UIImageView!
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
