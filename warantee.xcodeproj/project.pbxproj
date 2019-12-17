@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E96C6FC23A6713000422245 /* WaranteeForm1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E96C6FB23A6713000422245 /* WaranteeForm1.swift */; };
+		1E96C70023A8BD2E00422245 /* Image&VideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E96C6FF23A8BD2E00422245 /* Image&VideoController.swift */; };
+		1E96C70223A8C4AE00422245 /* AddWaranteeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E96C70123A8C4AE00422245 /* AddWaranteeController.swift */; };
 		3FEBEF66239BA19600A5A7E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBEF65239BA19600A5A7E4 /* AppDelegate.swift */; };
 		3FEBEF68239BA19600A5A7E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBEF67239BA19600A5A7E4 /* SceneDelegate.swift */; };
 		3FEBEF6A239BA19600A5A7E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBEF69239BA19600A5A7E4 /* ViewController.swift */; };
@@ -26,6 +29,9 @@
 
 /* Begin PBXFileReference section */
 		06C34597A869628B30974617 /* Pods-warantee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warantee.debug.xcconfig"; path = "Target Support Files/Pods-warantee/Pods-warantee.debug.xcconfig"; sourceTree = "<group>"; };
+		1E96C6FB23A6713000422245 /* WaranteeForm1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaranteeForm1.swift; sourceTree = "<group>"; };
+		1E96C6FF23A8BD2E00422245 /* Image&VideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image&VideoController.swift"; sourceTree = "<group>"; };
+		1E96C70123A8C4AE00422245 /* AddWaranteeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWaranteeController.swift; sourceTree = "<group>"; };
 		3FEBEF62239BA19600A5A7E4 /* warantee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = warantee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FEBEF65239BA19600A5A7E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FEBEF67239BA19600A5A7E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +101,7 @@
 				FA205934239BD4720064686F /* SignupController.swift */,
 				FA205932239BD05D0064686F /* LoginController.swift */,
 				3FEBEF6B239BA19600A5A7E4 /* Main.storyboard */,
+				1E96C6FB23A6713000422245 /* WaranteeForm1.swift */,
 				C6AE193923A4DA5700A82D65 /* WarantyInfoViewController.swift */,
 				C6AD494A23A39ACA00B489FB /* WaranteeTableViewController.swift */,
 				C6AD494E23A3B2FB00B489FB /* WaranteeCell.swift */,
@@ -103,6 +110,8 @@
 				3FEBEF73239BA19800A5A7E4 /* LaunchScreen.storyboard */,
 				3FEBEF76239BA19800A5A7E4 /* Info.plist */,
 				3FEBEF6E239BA19600A5A7E4 /* warantee.xcdatamodeld */,
+				1E96C6FF23A8BD2E00422245 /* Image&VideoController.swift */,
+				1E96C70123A8C4AE00422245 /* AddWaranteeController.swift */,
 			);
 			path = warantee;
 			sourceTree = "<group>";
@@ -253,12 +262,15 @@
 				C6AD494F23A3B2FB00B489FB /* WaranteeCell.swift in Sources */,
 				3FEBEF70239BA19600A5A7E4 /* warantee.xcdatamodeld in Sources */,
 				3FEBEF6A239BA19600A5A7E4 /* ViewController.swift in Sources */,
+				1E96C70223A8C4AE00422245 /* AddWaranteeController.swift in Sources */,
 				3FEBEF66239BA19600A5A7E4 /* AppDelegate.swift in Sources */,
 				FA205935239BD4720064686F /* SignupController.swift in Sources */,
 				3FEBEF68239BA19600A5A7E4 /* SceneDelegate.swift in Sources */,
 				C6AE193A23A4DA5700A82D65 /* WarantyInfoViewController.swift in Sources */,
+				1E96C6FC23A6713000422245 /* WaranteeForm1.swift in Sources */,
 				FA205933239BD05D0064686F /* LoginController.swift in Sources */,
 				C6AD494B23A39ACA00B489FB /* WaranteeTableViewController.swift in Sources */,
+				1E96C70023A8BD2E00422245 /* Image&VideoController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
