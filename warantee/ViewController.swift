@@ -189,6 +189,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
        return myView
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //self.category = row
         var tv = self.children[0] as! WaranteeTableViewController
         tv.WaranteeList.removeAll()
         tv.tableView.reloadData()
@@ -222,6 +223,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
   
     @IBAction func addButtonPressed(_ sender: Any) {
+        
+        let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let form1:AddWaranteeController = storyboard.instantiateViewController(withIdentifier: "AddWaranteeController") as! AddWaranteeController
+//        form1.x = 5
+        
+        //go to new screen in fullscreen
+        form1.modalPresentationStyle = .fullScreen
+        self.present(form1, animated: true, completion: nil)
     }
     
 }
