@@ -12,7 +12,7 @@ import UIKit
 class CellClass: UITableViewCell {
     
 }
-class AddWaranteeController: UIViewController {
+class AddWaranteeController: UIViewController,  UIPickerViewDelegate, UIPickerViewDataSource{
 
     @IBOutlet weak var txtAmount: UITextField!
     @IBOutlet weak var txtName: UITextField!
@@ -22,21 +22,23 @@ class AddWaranteeController: UIViewController {
     @IBOutlet weak var txtLocation: UITextField!
     @IBOutlet weak var txtCategory: UITextField!
     
+    @IBOutlet weak var txtPeriod: UITextField!
+
+    @IBOutlet weak var picker: UIPickerView!
     //Creating a table view
     let tableView = UITableView()
     //to make the screen shaded when selecting category
     let transparentView = UIView()
     var selectedButton = UIButton()
     var dataSource = [String]()
-    
+    var category = 0
     @IBOutlet weak var categorySelect: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
+       picker.delegate = self
+        picker.dataSource = self
         
         //this is to pick on the text field and shows the calander
         datePicker = UIDatePicker()
@@ -106,8 +108,15 @@ class AddWaranteeController: UIViewController {
     //Functtion to go to the next page
     @IBAction func NextPage(_ sender: Any) {
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let menuVC:Image_VideoController = storyboard.instantiateViewController(withIdentifier: "Image_VideoController") as! Image_VideoController
-        
+        let menuVC:Image_VideoController = storyboard.instantiateViewController(withIdentifier: "WaranteeForm2") as! Image_VideoController
+        menuVC.warantyDate = txtDate.text ?? "17/12/2019"
+        menuVC.warantyAmount = Float(self.txtAmount.text ?? "5.5")!
+        menuVC.warantyCategory = self.category
+        menuVC.warantyPeriod = Int(Int64(self.txtPeriod.text ?? "3")!)
+        menuVC.warantySellerName = txtName.text ?? "John"
+        menuVC.warantySellerPhone = txtPhone.text ?? "992424"
+        menuVC.warantySellerEmail = txtEmail.text ?? "jonfh@hc.com"
+        menuVC.warantyLocation = txtLocation.text ?? "Burj al arab"
         //go to new screen in fullscreen
         menuVC.modalPresentationStyle = .fullScreen
         self.present(menuVC, animated: true, completion: nil)
@@ -134,6 +143,62 @@ class AddWaranteeController: UIViewController {
          view.endEditing(true)
          
      }
+    
+       func numberOfComponents(in pickerView: UIPickerView) -> Int {
+           return 1
+       }
+       func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+           return 6
+       }
+       func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+           return 60
+       }
+       // UIPickerViewDelegate
+       
+       func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+           let myView = UIView()
+           myView.frame = CGRect(x:0, y:0, width:pickerView.bounds.width - 30, height:60)
+           let myImageView = UIImageView()
+           myImageView.frame = CGRect(x:0, y:0, width:50, height:50)
+          var rowString = String()
+          switch row {
+           case 0:
+               rowString = "all"
+               myImageView.image = UIImage(named:"warantee")
+          case 1:
+              rowString = "food"
+              myImageView.image = UIImage(named:"food")
+          case 2:
+              rowString = "grocery"
+              myImageView.image = UIImage(named:"grocery")
+           case 3:
+               rowString = "travel"
+               myImageView.image = UIImage(named:"travel")
+           case 4:
+               rowString = "electronics"
+               myImageView.image = UIImage(named:"electronics")
+           case 5:
+               rowString = "others"
+               myImageView.image = UIImage(named:"others")
+           
+          default:
+              rowString = "Error: too many rows"
+              myImageView.image = nil
+          }
+          let myLabel = UILabel()
+           myLabel.frame = CGRect(x:60, y:0, width:pickerView.bounds.width - 90, height:60 )
+          myLabel.font = UIFont(name:"Helvetica", size: 18)
+          myLabel.text = rowString
+
+          myView.addSubview(myLabel)
+          myView.addSubview(myImageView)
+
+          return myView
+       }
+       func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+           self.category = row
+    }
+           
 
     
 }
@@ -155,3 +220,4 @@ extension AddWaranteeController: UITableViewDataSource, UITableViewDelegate{
         removeTransparentView()
     }
 }
+
