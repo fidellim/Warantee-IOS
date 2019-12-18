@@ -11,7 +11,7 @@ import Firebase
 import GoogleSignIn
 import CoreData
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UNUserNotificationCenterDelegate {
 
    
     @IBOutlet weak var picker: UIPickerView!
@@ -77,9 +77,56 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
         picker.delegate = self
         picker.dataSource = self
+
+        // set UNUserNotificationCenter delegate to self
+        UNUserNotificationCenter.current().delegate = self
+        x()
+        
+    }
+    func x() {
+        let notificationOptions: UNAuthorizationOptions = [.alert, .sound];
+        UNUserNotificationCenter.current().requestAuthorization(options: notificationOptions) { (granted, error) in
+            if !granted {
+                print("Something went wrong")
+            } else {
+                let content = UNMutableNotificationContent()
+                content.body = "pls work"
+                content.sound = UNNotificationSound.default
+
+                let date = DateComponents(hour: 14, minute: 32)
+                let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
+
+                let request = UNNotificationRequest(identifier: "Daily String", content: content, trigger: trigger)
+                UNUserNotificationCenter.current().add(request) { (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+    }
+    //for displaying notification when app is in foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        //If you don't want to show notification when app is open, do something here else and make a return here.
+        //Even you you don't implement this delegate method, you will not see the notification on the specified controller. So, you have to implement this delegate and make sure the below line execute. i.e. completionHandler.
+
+        completionHandler([.alert, .badge, .sound])
     }
 
-    
+    // For handling tap and user actions
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+
+        switch response.actionIdentifier {
+        case "action1":
+            print("Action First Tapped")
+        case "action2":
+            print("Action Second Tapped")
+        default:
+            break
+        }
+        completionHandler()
+    }
     func goToLogin(){
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC:LoginController = storyboard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
@@ -142,6 +189,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
        return myView
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        //self.category = row
         var tv = self.children[0] as! WaranteeTableViewController
         tv.WaranteeList.removeAll()
         tv.tableView.reloadData()
@@ -175,6 +223,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
   
     @IBAction func addButtonPressed(_ sender: Any) {
+        
+        let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let form1:AddWaranteeController = storyboard.instantiateViewController(withIdentifier: "WaranteeForm1") as! AddWaranteeController
+//        form1.x = 5
+        
+        //go to new screen in fullscreen
+        form1.modalPresentationStyle = .fullScreen
+        self.present(form1, animated: true, completion: nil)
     }
     
 }
