@@ -225,7 +225,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBAction func addButtonPressed(_ sender: Any) {
         
         let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let form1:AddWaranteeController = storyboard.instantiateViewController(withIdentifier: "AddWaranteeController") as! AddWaranteeController
+        let form1:AddWaranteeController = storyboard.instantiateViewController(withIdentifier: "WaranteeForm1") as! AddWaranteeController
 //        form1.x = 5
         
         //go to new screen in fullscreen
